@@ -8,7 +8,7 @@
   height: var(--default-layout-header-height, 60px);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
   display: flex;
-  justify-content: centers;
+  justify-content: center;
 }
 
 .inner {
@@ -17,6 +17,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-right: 24px;
+  padding-left: 16px;
 }
 
 .search,
