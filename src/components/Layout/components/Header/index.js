@@ -1,16 +1,47 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmarkCircle, faSpinner, faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react';
+import {
+  faXmarkCircle,
+  faSpinner,
+  faMagnifyingGlass,
+  faPlus,
+  faEllipsisVertical,
+  faLanguage,
+  faCircleQuestion,
+  faKeyboard,
+  faMoon,
+} from '@fortawesome/free-solid-svg-icons';
+import Tippy from '@tippyjs/react/headless';
 
 import Button from '~/components/Button';
 import { Wrapper as BounceWrapper } from '~/components/Bounce';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
+import Menu from '~/components/Bounce/Menu';
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faLanguage} />,
+    title: 'English',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: 'Feedback and help',
+    to: '/feedback',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: 'Keyboard shortcuts',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faMoon} />,
+    title: 'Dark mode',
+  },
+];
 
 function Header() {
   const [searchResults, setSearchResults] = useState([]);
@@ -58,6 +89,12 @@ function Header() {
             Upload
           </Button>
           <Button primary>Log in</Button>
+
+          <Menu items={MENU_ITEMS}>
+            <button className={cx('see-more-btn')}>
+              <FontAwesomeIcon className={cx('see-more-icon')} icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>
