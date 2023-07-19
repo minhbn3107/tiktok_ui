@@ -4,7 +4,7 @@
 :root {
   --primary: #fe2c55;
   --black: #000;
-  --text-color: #333;
+  --text-color: #161823;
   --white: #fff;
 
   // Default Layout
@@ -42,4 +42,28 @@ input,
 a[href] {
   color: var(--text-color);
   text-decoration: none;
+}
+
+// Custom tippy tooltips
+body {
+  .tippy-box {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    background-color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+    border-bottom: none;
+  }
+
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    top: -8px;
+  }
+
+  .tippy-content {
+    padding: 8px 9px;
+  }
 }
