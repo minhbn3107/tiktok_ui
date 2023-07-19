@@ -27,6 +27,21 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faLanguage} />,
     title: 'English',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -52,10 +67,17 @@ function Header() {
     }, 0);
   }, []);
 
+  // Handle logic
+  const handleMenuChange = (menuItem) => {
+    console.log(menuItem);
+  };
+
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <img src={images.logo} alt="logo" />
+        <div className={cx('logo-container')}>
+          <img src={images.logo} className={cx('logo')} alt="logo" />
+        </div>
         <Tippy
           interactive
           visible={searchResults.length > 0}
@@ -90,7 +112,7 @@ function Header() {
           </Button>
           <Button primary>Log in</Button>
 
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('see-more-btn')}>
               <FontAwesomeIcon className={cx('see-more-icon')} icon={faEllipsisVertical} />
             </button>
