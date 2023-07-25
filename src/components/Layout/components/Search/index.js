@@ -6,6 +6,7 @@ import styles from './Search.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as BounceWrapper } from '~/components/Bounce';
+import { useDebounce } from '~/hooks';
 import AccountItem from '~/components/AccountItem';
 
 const cx = classNames.bind(styles);
@@ -16,17 +17,19 @@ function Search() {
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const debounced = useDebounce(searchValue, 500);
+
   const inputRef = useRef();
 
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!debounced.trim()) {
       setSearchResults([]);
       return;
     }
 
     setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
       .then((res) => res.json())
       .then((res) => {
         setSearchResults(res.data);
@@ -35,7 +38,7 @@ function Search() {
       .catch(() => {
         setLoading(false);
       });
-  }, [searchValue]);
+  }, [debounced]);
 
   const handleClear = () => {
     setSearchValue('');
