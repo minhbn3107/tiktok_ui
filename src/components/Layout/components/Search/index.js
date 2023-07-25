@@ -3,8 +3,10 @@ import { SearchIcon } from '~/components/Icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
-import { useEffect, useState, useRef } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
+
+import { useEffect, useState, useRef } from 'react';
+import * as searchServices from '~/apiServices/searchServices';
 import { Wrapper as BounceWrapper } from '~/components/Bounce';
 import { useDebounce } from '~/hooks';
 import AccountItem from '~/components/AccountItem';
@@ -27,17 +29,16 @@ function Search() {
       return;
     }
 
-    setLoading(true);
+    const fetchApi = async () => {
+      setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResults(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+      const result = await searchServices.search(debounced);
+      setSearchResults(result);
+
+      setLoading(false);
+    };
+
+    fetchApi();
   }, [debounced]);
 
   const handleClear = () => {
