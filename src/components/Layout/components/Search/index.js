@@ -51,6 +51,14 @@ function Search() {
     setShowResults(false);
   };
 
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+
+    if (!searchValue.startsWith(' ')) {
+      setSearchValue(searchValue);
+    }
+  };
+
   return (
     <HeadlessTippy
       interactive
@@ -73,11 +81,7 @@ function Search() {
           value={searchValue}
           placeholder="Search"
           spellCheck={false}
-          onChange={(e) => {
-            if (!e.target.value.startsWith(' ')) {
-              setSearchValue(e.target.value);
-            }
-          }}
+          onChange={handleChange}
           onFocus={() => setShowResults(true)}
         />
         {!!searchValue && !loading && (

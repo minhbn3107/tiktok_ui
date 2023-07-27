@@ -21,6 +21,10 @@
   padding-right: var(--default-right-horizontal-layout-spacer);
 }
 
+.logo-link {
+  display: flex;
+}
+
 .logo-container {
   width: 300px;
 }

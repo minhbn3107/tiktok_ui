@@ -6,6 +6,8 @@
   --text-color: #161823;
   --white: #fff;
 
+  --font-family: 'TikTokFont', sans-serif;
+
   // Default Layout
   --default-layout-header-height: 60px;
   --default-layout-width: 100%;
@@ -24,7 +26,7 @@ html {
 }
 
 body {
-  font-family: 'TikTokFont', sans-serif;
+  font-family: var(--font-family);
   font-size: 1.6rem;
   line-height: 1.5rem;
   text-rendering: optimizeSpeed;
