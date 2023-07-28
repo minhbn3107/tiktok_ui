@@ -16,10 +16,11 @@
   input {
     height: 100%;
     flex: 1;
-    color: var(--black);
+    padding-right: 40px;
     font-size: 1.6rem;
     caret-color: var(--primary);
     background-color: transparent;
+    color: rgba(22, 24, 35, 0.9);
     font-family: var(--font-family);
   }
 
