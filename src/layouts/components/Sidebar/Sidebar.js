@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 import Menu, { MenuItem } from './Menu';
+import FollowingAccounts from '~/components/FollowingAccounts/FollowingAccounts';
 import {
   HomeIcon,
   HomeActiveIcon,
@@ -19,7 +20,7 @@ function Sidebar() {
   return (
     <aside className={cx('wrapper')}>
       <Menu>
-        <MenuItem title="For you" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+        <MenuItem title="For You" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
         <MenuItem
           title="Following"
           to={config.routes.following}
@@ -39,6 +40,8 @@ function Sidebar() {
           activeIcon={<VideoRecorderActiveIcon />}
         />
       </Menu>
+      <FollowingAccounts label="Suggested accounts" />
+      <FollowingAccounts label="Following accounts" />
     </aside>
   );
 }
